@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class SortingProcessorTest {
     private SortingProcessor sortingProcessor;
     private CamelContext context;
+    private Exchange exchange;
     private File file;
 
     @Before
@@ -26,8 +27,23 @@ public class SortingProcessorTest {
 
     @Test
     public void whenGivenAFileItShouldSetTheFileTypeAsAHeaderInTheExchange() throws Exception {
-        Exchange exchange = CamelExchangeFactory.createExchange(context);
+        exchange = CamelExchangeFactory.createExchange(context);
         exchange.getIn().setBody(file);
+        exchange.getIn().setHeader("CamelFileName","testFile.txt");
+
+        sortingProcessor.process(exchange);
+        String expected = "txt";
+        String actualHeader = (String) exchange.getIn().getHeader("fileType");
+
+        assertEquals(expected, actualHeader);
+    }
+
+    @Test
+    public void whenPassedAFilenameWithMultipleFullStopsItShouldGetTheLastString() throws Exception {
+        exchange = CamelExchangeFactory.createExchange(context);
+        exchange.getIn().setBody(file);
+        exchange.getIn().setHeader("CamelFileName","testFile.myFile.txt");
+
         sortingProcessor.process(exchange);
         String expected = "txt";
         String actualHeader = (String) exchange.getIn().getHeader("fileType");
