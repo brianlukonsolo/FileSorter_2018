@@ -1,0 +1,5 @@
+- Should sort files into separate folders by extension type.
+- should be able to sort into folders according to the month and year (or quarter). We do this by looking at the file-creation date.
+- user should be able to specify a sorting-mode (eg: sort by date, sort by file-type, sort by first letter of extension... etc).
+- user should be able to specify a different destination folder.
+- user should be able to select a "move" mode in which all files of a particular type are moved to a user specified folder.
