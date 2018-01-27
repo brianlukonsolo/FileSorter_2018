@@ -2,7 +2,7 @@ package com.brianlukonsolo.constants;
 
 public class CodeConstants {
     public static class LocationsAndPaths {
-        public static final String CONFIGURATION_FILE_PATH = "src\\main\\resources\\configuration.properties";
+        public static final String CONFIGURATION_FILE_PATH = "configuration.properties";
 
 
     }
